@@ -1,59 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <style>
- 
-    .images {
-      display: flex;
-      align-items: flex-start;
-      transition: transform 0.5s;
-    }
-.images > img{
-vertical-align: top;
-}
-
-.window {
-border:2px solid red;
-width:300px;
-}
-  </style>
+  <link rel="stylesheet" href="./css/basic.css">
   <script src="./js/jQuery-min.js"></script>
 </head>
 
 <body>
   <div class="window">
     <div class="images" id=images>
-<img src="https://fthmb.tqn.com/0ui_Zw01Ht9NHJkSBlqOIC1IH44=/960x0/filters:no_upscale()/yorkshire-terrier-583788122-581630e85f9b581c0b018a00.jpg"
-  width=300 alt="图片1" height=200>
-<img src="https://canna-pet.com/wp-content/uploads/2017/06/20-longest-living-dog-breeds_canna-pet-e1498599846169.jpg"
-  width=300 alt="" height=200>
-<img src="https://fthmb.tqn.com/0ui_Zw01Ht9NHJkSBlqOIC1IH44=/960x0/filters:no_upscale()/yorkshire-terrier-583788122-581630e85f9b581c0b018a00.jpg"
-  width=300 alt="" height=200>
-<img src="https://canna-pet.com/wp-content/uploads/2017/06/20-longest-living-dog-breeds_canna-pet-e1498599846169.jpg"
-  width=300 alt="" height=200>
+      <img src="./images/1.jpg" width=300 alt="图片1" height=200>
+      <img src="./images/2.jpg" width=300 alt="图片二" height=200>
+      <img src="./images/3.jpg" alt="图片三" width=300 height=200>
+      <img src="./images/4.jpg" alt="图片四" width=300 height=200>
+    </div>
+    <div class='btn'>
+      <button class="red">按钮1</button>
+      <button>按钮2</button>
+      <button>按钮3</button>
+      <button>按钮4</button>
     </div>
   </div>
-  <div class='btn'>
-    <button>按钮1</button>
-    <button>按钮2</button>
-    <button>按钮3</button>
-    <button>按钮4</button>
-  </div>
 </body>
-<script>
-  var $allButtons = $('.btn')
-  $allButtons.on('click', function (e) {
-    var index = $(e.target).index()
-    var moveWidth = index * (-300)
-    var $images = $('.images')
-    $images.css({
-      transform: 'translate(' + moveWidth + 'px)'
-    })
-  })
-</script>
 
+<script src="./js/main.js"></script>
 </html>

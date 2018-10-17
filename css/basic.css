@@ -1,11 +1,11 @@
-    * {
-      margin: 0;
-      padding: 0;
+    .images {
+      display: flex;
+      align-items: flex-start;
+      transition: transform 0.5s;
     }
 
-    body {
-      width: 600px;
-      display: inline-block;
+    .images>img {
+      vertical-align: top;
     }
 
     .window {
@@ -13,9 +13,6 @@
       overflow: hidden;
     }
 
-    .images {
-      display: flex;
-      align-items: flex-start;
-      transition: transform 0.5s;
-      width: 300px;
+    .red {
+      color: red;
     }
