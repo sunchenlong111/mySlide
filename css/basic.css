@@ -1,7 +1,10 @@
+    
+    
     .images {
       display: flex;
       align-items: flex-start;
       transition: transform 0.5s;
+
     }
 
     .images>img {
@@ -10,9 +13,47 @@
 
     .window {
       width: 300px;
+      margin:50px auto;
       overflow: hidden;
     }
 
-    .red {
-      color: red;
+    .container{
+      position: relative;
+    }
+
+    .left,.right{
+      position: absolute;
+      background-color:rgb(204, 196, 206,0.5);
+      display: none;
+      cursor:pointer;
+    }
+
+    .left{
+      left:0;
+      top:47.5%;
+    }
+
+    .right {
+      right: 0;
+      top: 47.5%;
+    }
+
+    .btn .active {
+      background: orange;
+    }
+
+    .btn{
+      height:10px;
+      width: 50%;
+      margin: 20px auto;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .btn span{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background: #888; 
+      cursor:pointer;
     }

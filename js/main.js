@@ -1,7 +1,8 @@
-  var $allButtons = $('.btn>button')
+  var $allButtons = $('.btn>span')
   var $imgWindow = $('.images')
   var len = $allButtons.length
-  var n = 1
+  var timer = timeSet()
+  var n = 0
   for (let i = 0; i < len; i++) {
     $allButtons.eq(i).on('click', (e) => {
       var index = $(e.currentTarget).index()
@@ -9,17 +10,68 @@
       $imgWindow.css({
         transform: `translate(${length}px)`
       })
-      addRed($allButtons.eq(index))
+      addActive($allButtons.eq(index))
       n = index
     })
   }
 
-  function addRed($button) {
-    $button.addClass('red')
-      .siblings().removeClass('red')
-  }
+  $('.left').on('click', (e) => {
+    n--
+    if (n >= 0) {
+      $imgWindow.css({
+        transform: `translate(${-300*n}px)`
+      })
+      addActive($allButtons.eq(n))
+    } else {
+      n = 3
+      $imgWindow.css({
+        transform: `translate(${-900}px)`
+      })
+      addActive($allButtons.eq(n))
+    }
+  })
 
-  var timer = timeSet()
+  $('.right').on('click', (e) => {
+    n++
+    if (n <= 3) {
+      $imgWindow.css({
+        transform: `translate(${-300*n}px)`
+      })
+      addActive($allButtons.eq(n))
+    } else {
+      n = 0
+      $imgWindow.css({
+        transform: `translate(0px)`
+      })
+      addActive($allButtons.eq(n))
+    }
+  })
+
+  $('.container').on('mouseover', () => {
+    clearInterval(timer)
+    $('.left').css({
+      display: 'block'
+    })
+    $('.right').css({
+      display: 'block'
+    })
+  })
+
+  $('.container').on('mouseleave', () => {
+    timer = timeSet()
+    $('.left').css({
+      display: 'none'
+    })
+    $('.right').css({
+      display: 'none'
+    })
+  })
+
+
+  function addActive($button) {
+    $button.addClass('active')
+      .siblings().removeClass('active')
+  }
 
   function timeSet() {
     return setInterval(() => {
@@ -27,12 +79,3 @@
       n++
     }, 1000)
   }
-
-
-  $('.window').on('mouseover', () => {
-    clearInterval(timer)
-  })
-
-  $('.window').on('mouseleave', () => {
-    timer = timeSet()
-  })
