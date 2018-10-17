@@ -1,0 +1,21 @@
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 600px;
+      display: inline-block;
+    }
+
+    .window {
+      width: 300px;
+      overflow: hidden;
+    }
+
+    .images {
+      display: flex;
+      align-items: flex-start;
+      transition: transform 0.5s;
+      width: 300px;
+    }
