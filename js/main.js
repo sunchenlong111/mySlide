@@ -3,70 +3,72 @@
   var len = $allButtons.length
   var timer = timeSet()
   var n = 0
+
   for (let i = 0; i < len; i++) {
     $allButtons.eq(i).on('click', (e) => {
       var index = $(e.currentTarget).index()
-      var length = index * (-300)
-      $imgWindow.css({
-        transform: `translate(${length}px)`
-      })
-      addActive($allButtons.eq(index))
+      changeState(index)
       n = index
     })
   }
 
-  $('.left').on('click', (e) => {
-    n--
-    if (n >= 0) {
-      $imgWindow.css({
-        transform: `translate(${-300*n}px)`
-      })
-      addActive($allButtons.eq(n))
-    } else {
-      n = 3
-      $imgWindow.css({
-        transform: `translate(${-900}px)`
-      })
-      addActive($allButtons.eq(n))
-    }
-  })
-
-  $('.right').on('click', (e) => {
-    n++
-    if (n <= 3) {
-      $imgWindow.css({
-        transform: `translate(${-300*n}px)`
-      })
-      addActive($allButtons.eq(n))
-    } else {
-      n = 0
-      $imgWindow.css({
-        transform: `translate(0px)`
-      })
-      addActive($allButtons.eq(n))
-    }
-  })
+  arrowAction('left')
+  arrowAction('right')
 
   $('.container').on('mouseover', () => {
     clearInterval(timer)
-    $('.left').css({
-      display: 'block'
-    })
-    $('.right').css({
-      display: 'block'
-    })
+    changeDisplay('left','right','show')
   })
 
   $('.container').on('mouseleave', () => {
     timer = timeSet()
-    $('.left').css({
-      display: 'none'
-    })
-    $('.right').css({
-      display: 'none'
-    })
+    changeDisplay('left', 'right', 'hidden')
   })
 
+
+
+
+  //////////////////////////////////////
+
+  function changeDisplay(name1,name2,value){
+     $(`.${name1}`).addClass(value)
+     $(`.${name2}`).addClass(value)
+  }
+
+  function arrowAction(arrow) {
+    $(`.${arrow}`).on('click', (e) => {
+      if (arrow === 'left') {
+        n--
+        if (n >= 0) {
+          changeState(n)
+        } else {
+          n = 3
+          changeState(n)
+        }
+      } else if (arrow === 'right') {
+        n++
+        if (n <= 3) {
+          changeState(n)
+        } else {
+          n = 0
+          changeState(n)
+        }
+      }
+    })
+  }
+
+
+  function changeState(x) {
+    var $button = $allButtons.eq(x)
+    changePosition(-300 * x)
+    addActive($button)
+  }
+
+  function changePosition(n) {
+    $imgWindow.css({
+      transform: `translate(${n}px)`
+    })
+  }
 
   function addActive($button) {
     $button.addClass('active')
@@ -77,5 +79,5 @@
     return setInterval(() => {
       $allButtons.eq(n % len).trigger('click')
       n++
-    }, 1000)
+    }, 2000)
   }
